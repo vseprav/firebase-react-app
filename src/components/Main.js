@@ -2,15 +2,16 @@ require('normalize.css/normalize.css');
 require('styles/App.css');
 
 import React from 'react';
+import LoginFormComponent from './login/components/LoginFormComponent'
 
-let yeomanImage = require('../images/yeoman.png');
+let dictionary = require('../images/dictionary.gif');
 
 class AppComponent extends React.Component {
   render() {
     return (
-      <div className="index">
-        <img src={yeomanImage} alt="Yeoman Generator" />
-        <div className="notice">Please edit <code>src/components/Main.js</code> to get started!</div>
+      <div className="container">
+        <img className="logo" src={dictionary} alt="dictionary" />
+        <LoginFormComponent/>
       </div>
     );
   }

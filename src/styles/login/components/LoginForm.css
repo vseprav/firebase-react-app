@@ -1,0 +1,7 @@
+.loginform-component {
+  max-width: 400px;
+  margin: 40px auto;
+}
+.loginform-component h2{
+  text-align: center;
+}
