@@ -1,6 +1,6 @@
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-img.logo {
+.logo img {
   margin: 40px auto;
   width: 200px;
   border-radius: 4px;

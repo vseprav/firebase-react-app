@@ -10,7 +10,9 @@ class AppComponent extends React.Component {
   render() {
     return (
       <div className="container">
-        <img className="logo" src={dictionary} alt="dictionary" />
+        <div className="logo">
+          <img src={dictionary} alt="dictionary" />
+        </div>
         <LoginFormComponent/>
       </div>
     );
