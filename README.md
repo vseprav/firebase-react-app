@@ -1,4 +1,6 @@
 
+# Simple dictionary application
+
 ## Usage
 ```
 # Start for development
@@ -28,7 +30,7 @@ npm run copy
 ```
 More info https://github.com/react-webpack-generators/generator-react-webpack
 
-##Firebase CLI 
+## Firebase CLI 
 ```
 firebase login
 firebase init
