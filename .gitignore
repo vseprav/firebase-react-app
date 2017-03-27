@@ -38,8 +38,8 @@ bower_components/
 # IDE/Editor data
 .idea
 
-.dist
-=======
+dist
+
 # Dependency directories
 node_modules
 jspm_packages
