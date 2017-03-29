@@ -15,7 +15,9 @@ const fireBaseUser = (state = {
     case 'USER_LOGOUT':
       state = {
         ...state,
-        isLogin: action.payload
+        email: action.payload.email,
+        uid:action.payload.uid,
+        isLogin: action.payload.isLogin
       };
       break;
   }

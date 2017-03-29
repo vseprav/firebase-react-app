@@ -11,12 +11,14 @@ import LoginFormComponent from './login/components/LoginFormComponent';
 import DictionariesComponent from './dictionaries/components/DictionariesComponent';
 import HomeComponent from './home/components/HomeComponent';
 import {connect} from 'react-redux';
+import getFireBaseApp from '../firebase/firebase';
+import {userLogout} from '../actions/action';
 
 class AppComponent extends React.Component {
   render() {
     let nav = null;
     if (this.props.fireBaseUser.isLogin) {
-      nav = <ul><li><Link to="/">Home</Link></li><li><Link to="/dictionaries">Dictionaries</Link></li></ul>;
+      nav = this.getNavigation();
     }
 
     return (
@@ -32,6 +34,27 @@ class AppComponent extends React.Component {
       </div>
     );
   }
+
+  getNavigation() {
+    return (
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/dictionaries">Dictionaries</Link></li>
+        <li><a onClick={this.logOut.bind(this)} href="#">Logout</a></li>
+      </ul>
+    );
+  }
+
+  logOut(e) {
+    e.preventDefault();
+    getFireBaseApp().auth().signOut().then(() =>{
+      this.props.userLogout(false);
+      location.assign('/login');
+    }).catch((error) =>{
+      window.console.error(error.message);
+    });
+  }
+
 }
 
 AppComponent.defaultProps = {
@@ -42,5 +65,13 @@ const mapStateToProps = (state) => {
     fireBaseUser: state.fireBaseUser
   };
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userLogout: (isLogin) => {
+      dispatch(userLogout(isLogin));
+    }
+  };
+};
 
-export default connect(mapStateToProps)(AppComponent);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);
