@@ -3,6 +3,8 @@
 import React from 'react';
 import getFireBaseApp from '../../../firebase/firebase';
 let dictionary = require('../../../images/dictionary.gif');
+import {connect} from 'react-redux';
+import {userLogin} from '../../../actions/action';
 
 require('styles/login/components/LoginForm.css');
 
@@ -10,8 +12,12 @@ class LoginFormComponent extends React.Component {
 
   login(e) {
     e.preventDefault();
+    this.props.userLogin(true);
     getFireBaseApp().auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => location.assign('/'))
+      .then(() => {
+        this.props.userLogin(true);
+        location.assign('/dictionaries');
+      })
       .catch((error) => {
         window.console.error(error.message);
       });
@@ -52,4 +58,18 @@ LoginFormComponent.displayName = 'LoginComponentsLoginFormComponent';
 // LoginFormComponent.propTypes = {};
 // LoginFormComponent.defaultProps = {};
 
-export default LoginFormComponent;
+const mapStateToProps = (state) => {
+  return {
+    fireBaseUser: state.fireBaseUser
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userLogin: (isLogin) => {
+      dispatch(userLogin(isLogin));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginFormComponent);
