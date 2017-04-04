@@ -37,11 +37,13 @@ class AppComponent extends React.Component {
 
   getNavigation() {
     return (
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/dictionaries">Dictionaries</Link></li>
-        <li><a onClick={this.logOut.bind(this)} href="#">Logout</a></li>
+    <div className="card navigation">
+      <ul className="nav">
+        <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/dictionaries">Dictionaries</Link></li>
+        <li className="nav-item"><a className="nav-link" onClick={this.logOut.bind(this)} href="#">Logout</a></li>
       </ul>
+    </div>
     );
   }
 
