@@ -16,4 +16,13 @@ export function userLogout(isLogin) {
   };
 }
 
-export default {userLogin, userLogout};
+export function addDictionary(dictionary) {
+  return {
+    type: 'ADD_DICTIONARY',
+    payload: {
+      dictionary:dictionary
+    }
+  };
+}
+
+export default {userLogin, userLogout, addDictionary};

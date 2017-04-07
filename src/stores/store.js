@@ -1,20 +1,23 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import { createLogger } from 'redux-logger'
+import fireBaseUser from '../reducers/firebase_user';
+import dictionaries from '../reducers/dictionary';
 
-import fireBaseUser from '../reducers/reducers';
+const storeName = 'appStore';
 
-let persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {};
+let persistedState = localStorage.getItem(storeName) ? JSON.parse(localStorage.getItem(storeName)) : {};
 
 let store = createStore(
   combineReducers({
-    fireBaseUser
+    fireBaseUser,
+    dictionaries
   }),
   persistedState,
   applyMiddleware(createLogger())
 );
 
 store.subscribe(()=>{
-  localStorage.setItem('reduxState', JSON.stringify(store.getState()))
+  localStorage.setItem(storeName, JSON.stringify(store.getState()))
 });
 
 export default store;
